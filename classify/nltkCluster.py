@@ -42,17 +42,38 @@ with open(inputfile,"r") as inputf:
         pd=(float(duration)/gd)*100
         vilcode=villages[village]
         users.append(userid)
-        myMatrix.append([pd,ps,float(age),int(trgrp),int(educ),int(vilcode)])
+        #myMatrix.append([pd,ps,float(age),int(trgrp),int(educ),int(vilcode)])
         #myMatrix.append([float(avg),float(age),int(trgrp),int(educ),int(vilcode)])
+        myMatrix.append([long(session),long(duration)])
      
 print myMatrix   
 inputf.close()
 
+vectors=[numpy.array(f) for f in myMatrix]
+clusterer=cluster.GAAClusterer(num_clusters=4)
+clusters=clusterer.cluster(vectors, True)
 
+print 'Clusterer: ',clusterer
+print 'clustered: ',vectors
+print 'As: ',clusters
+
+i=0
+leaves=[]
+while(i<len(vectors)):
+    leaves.append(str(i))
+    i+=1
+#dendrogram
+clusterer.dendrogram().show(leaf_labels=leaves)
+#classify a new vector
+vector=numpy.array([3,3])
+print 'classify(%s): ' %vector,
+print clusterer.classify(vector)
+
+
+''' K Means Clustring
 clusterer=cluster.KMeansClusterer(3,euclidean_distance)
 vectors=[numpy.array(f) for f in myMatrix]
 clusters=clusterer.cluster(vectors,assign_clusters=True,trace=False)
-
 
 
 print 'Means: ', clusterer.means()
@@ -63,4 +84,4 @@ for cl in clusters:
 
 
   
-
+'''
