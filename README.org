@@ -1,14 +1,16 @@
-Pre-requisites:
+*Topic Prediction for the Avaaj Otalo Platform using Decision Tree Classifier
+|Seema Puthyapurayil | Priya Iyer
+| Pre-requisites:
 The following need to be installed 
-Python 2.x
-scikit-learn
++Python 2.x
++scikit-learn
 
 
 Steps to run the classifier on your machine
-1. Download the zip folder of the master branch
-2. Unzip the zip folder
-3. In your command line, Go to AOMining-Master/classify folder
-4. Run topicPrediction.py and simply follow the instructions
++1. Download the zip folder of the master branch
++2. Unzip the zip folder
++3. In your command line, Go to AOMining-Master/classify folder
++4. Run topicPrediction.py and simply follow the instructions
 
 Also, checkout the data/OutputClassifier file to look at some sample output
 
