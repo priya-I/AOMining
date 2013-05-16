@@ -170,6 +170,9 @@ print "Classification Report: \n", metrics.classification_report(testLabels,pred
 print topics
 
 '''
+import pydot
+import StringIO
+from sklearn import tree
 dot_data = StringIO.StringIO() 
 tree.export_graphviz(pestEst, out_file=dot_data) 
 graph = pydot.graph_from_dot_data(dot_data.getvalue()) 

@@ -87,19 +87,19 @@ def trainClassifier():
     '''
     Fitting the training data into the decision tree
     '''
-    '''
+    
     topicClf = dtc(criterion='entropy',random_state=0)
     topicClf.fit(training[0],labels)
     
     
-    Cross validating the results using 10% of the training set as the test set 
-    
+    #Cross validating the results using 10% of the training set as the test set 
+    '''
     X_train, X_test, y_train, y_test = cross_validation.train_test_split(
     training[0], labels, test_size=0.1, random_state=0)
     print "Cross Validation Score"
     print topicClf.score(X_test, y_test)                                        
-    
-    ''''''
+    '''
+    '''
     # Save the classifier
     with open('topic_classifier.pkl', 'wb') as fid:
         cPickle.dump(topicClf, fid)    
@@ -153,7 +153,7 @@ if __name__ == '__main__':
     #Input files required for classification
     trainfile="data/TrainingSet.csv"
     testf="data/TestSet.csv"
-    
+    print "** Topic Predictor for the Avaaj Otalo Platform **"
     #Declaration of variables
     months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
     crops=['Cotton', 'None', 'Cumin', 'Mustard', 'Other', 'Wheat', 'Castor', 'Groundnut', 'Onion', 'Sorghum', 'Brinjal', 'Chilli', 'Gram', 'Paddy', 'Millet', 'Sesame', 'Banana', 'Maize', 'Garlic', 'Tobacco', 'Papaya']
@@ -167,21 +167,22 @@ if __name__ == '__main__':
         with open(testf,'r') as testfile:
             outputResults(predictions,testfile)
         testfile.close()
+        
     else:
         testvals=[]
         '''
         Taking user input
         '''
-        print "Please enter as shown in the examples because there are no input validations yet!:)"
+        print "** Please enter as shown in the examples because there are no input validations yet!:) **"
         resume='y' 
         while(resume=='y'):
             crop=raw_input("Enter the crop name. Your options are 'Cotton', 'None', 'Cumin', 'Mustard', 'Other', 'Wheat', 'Castor', 'Groundnut', 'Onion', 'Sorghum', 'Brinjal', 'Chilli', 'Gram', 'Paddy', 'Millet', 'Sesame', 'Banana', 'Maize', 'Garlic', 'Tobacco', 'Papaya'  ")
             dur=raw_input("Enter the average call duration in seconds Eg: 54,45,55  ")
             month=raw_input("Enter the month name in short. Eg: Jan, Feb, Mar  ")
             testvals.append([str(crop),int(dur),str(month)])
-            resume=raw_input("Continue? y/n")
+            resume=raw_input("Input more? y/n: ")
             resume=str(resume).lower()
-        
+
         with open('topic_classifier.pkl', 'rb') as fid:
             topicClf = cPickle.load(fid)
         
