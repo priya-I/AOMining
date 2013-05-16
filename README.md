@@ -1,5 +1,5 @@
 Pre-requisites:
-The following need to be installed
+The following need to be installed 
 Python 2.x
 scikit-learn
 
