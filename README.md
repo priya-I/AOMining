@@ -1,1 +1,3 @@
-For Testing
+Steps
+1. Git clone the repository
+2. 
