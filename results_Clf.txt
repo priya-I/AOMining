@@ -1,0 +1,115 @@
+1. Decision Trees with Info Gain as splitting attribute
+Mean Accuracy:  0.775
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.66      0.77      0.71        30
+          1       0.84      0.70      0.76        30
+          2       0.72      0.70      0.71        30
+          3       0.90      0.93      0.92        30
+
+avg / total       0.78      0.78      0.78       120
+
+['Pests', 'Diseases', 'Fertilizers/Bio-organic', 'Crop Planning']
+
+2. Decision Trees with Info Gain as splitting attribute with Other 
+Mean Accuracy:  0.74
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.48      0.73      0.58        30
+          1       0.81      0.70      0.75        30
+          2       0.81      0.70      0.75        30
+          3       0.93      0.93      0.93        30
+          4       0.86      0.63      0.73        30
+
+avg / total       0.78      0.74      0.75       150
+
+['Pests', 'Diseases', 'Fertilizers/Bio-organic', 'Crop Planning', 'Other']
+
+3. Decision Tree with Gini as splitting attribute
+Mean Accuracy:  0.766666666667
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.64      0.77      0.70        30
+          1       0.91      0.67      0.77        30
+          2       0.71      0.67      0.69        30
+          3       0.85      0.97      0.91        30
+
+avg / total       0.78      0.77      0.77       120
+
+4. Removed Treatment DTC 
+Mean Accuracy:  0.766666666667
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.66      0.77      0.71        30
+          1       0.84      0.70      0.76        30
+          2       0.69      0.67      0.68        30
+          3       0.90      0.93      0.92        30
+
+avg / total       0.77      0.77      0.77       120
+
+Useless feature
+
+5. Removed Age DTC
+Mean Accuracy:  0.733333333333
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.57      0.70      0.63        30
+          1       0.86      0.63      0.73        30
+          2       0.66      0.63      0.64        30
+          3       0.91      0.97      0.94        30
+
+avg / total       0.75      0.73      0.73       120
+
+6. Removed forum DTC
+Mean Accuracy:  0.733333333333
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.60      0.70      0.65        30
+          1       0.86      0.63      0.73        30
+          2       0.61      0.63      0.62        30
+          3       0.91      0.97      0.94        30
+
+avg / total       0.75      0.73      0.73       120
+
+7. Removed forum and trt
+Mean Accuracy:  0.725
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.57      0.70      0.63        30
+          1       0.79      0.63      0.70        30
+          2       0.68      0.63      0.66        30
+          3       0.90      0.93      0.92        30
+
+avg / total       0.74      0.72      0.73       120
+
+
+8. O v Rest Criterion Gini
+Mean Accuracy:  0.75
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.55      0.77      0.64        30
+          1       0.90      0.60      0.72        30
+          2       0.77      0.67      0.71        30
+          3       0.91      0.97      0.94        30
+
+avg / total       0.78      0.75      0.75       120
+
+9. O v Rest Entropy
+Mean Accuracy:  0.741666666667
+Classification Report: 
+             precision    recall  f1-score   support
+
+          0       0.54      0.73      0.62        30
+          1       0.83      0.67      0.74        30
+          2       0.79      0.63      0.70        30
+          3       0.90      0.93      0.92        30
+
+avg / total       0.77      0.74      0.75       120
