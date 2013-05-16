@@ -11,16 +11,6 @@ from sklearn.metrics import classification_report
 from sklearn import cross_validation
 
 
-#Input files required for classification
-trainfile="data/TrainingSet.csv"
-testf="data/TestSet.csv"
-
-#Declaration of variables
-months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-crops=['Cotton', 'None', 'Cumin', 'Mustard', 'Other', 'Wheat', 'Castor', 'Groundnut', 'Onion', 'Sorghum', 'Brinjal', 'Chilli', 'Gram', 'Paddy', 'Millet', 'Sesame', 'Banana', 'Maize', 'Garlic', 'Tobacco', 'Papaya']
-topics=['Animal Husbandry', 'Crop Planning', 'Crop Variety', 'Diseases', 'Fertilizers/Bio-organic', 'Government', 'Harvesting', 'Horticulture', 'IPM Strategy', 'Irrigation', 'Land Preparation', 'Marketing', 'NGOs', 'Other', 'Pests', 'Seeds', 'Soil Care', 'Sowing', 'Weather', 'Weed Control']
-testdata=[]
-
 '''
 Step:1 Pre-processing
 The preprocess() function extracts the required fields from the .csv input file which has records in the following format:
@@ -46,7 +36,6 @@ def old_preprocess(inputfile):
             month=record[3].strip('\r\n')
             myMatrix.append([crop,long(duration),month,topic])
     inputf.close()
-    print crops
     return myMatrix
 
 def preprocess(inputfile):
@@ -63,7 +52,6 @@ def preprocess(inputfile):
             month=record[3].strip('\r\n')
             myMatrix.append([crop,long(duration),month,topic])
     inputf.close()
-    print crops
     return myMatrix
 
 '''
@@ -142,10 +130,9 @@ def testClassify():
     return predictions
 
 '''
-Formatting the output. Check output file: OutputClassifier
+Formatting the output. Check output file: data/OutputClassifier
 '''
 def outputResults(predictions,testrows):
-    
     for row in testrows:
         testdata.append(row)    
     print "Test Prediction Results"
@@ -163,7 +150,17 @@ def outputResults(predictions,testrows):
         print "**************************"
 
 if __name__ == '__main__':
-    choice=input("Enter 1 for demo and 2 for entering your data")
+    #Input files required for classification
+    trainfile="data/TrainingSet.csv"
+    testf="data/TestSet.csv"
+    
+    #Declaration of variables
+    months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    crops=['Cotton', 'None', 'Cumin', 'Mustard', 'Other', 'Wheat', 'Castor', 'Groundnut', 'Onion', 'Sorghum', 'Brinjal', 'Chilli', 'Gram', 'Paddy', 'Millet', 'Sesame', 'Banana', 'Maize', 'Garlic', 'Tobacco', 'Papaya']
+    topics=['Animal Husbandry', 'Crop Planning', 'Crop Variety', 'Diseases', 'Fertilizers/Bio-organic', 'Government', 'Harvesting', 'Horticulture', 'IPM Strategy', 'Irrigation', 'Land Preparation', 'Marketing', 'NGOs', 'Other', 'Pests', 'Seeds', 'Soil Care', 'Sowing', 'Weather', 'Weed Control']
+    testdata=[]
+
+    choice=input("Enter 1 for demo and 2 for entering your data ")
     if choice==1:
         trainClassifier()
         predictions=testClassify()
@@ -172,18 +169,22 @@ if __name__ == '__main__':
         testfile.close()
     else:
         testvals=[]
+        '''
+        Taking user input
+        '''
         print "Please enter as shown in the examples because there are no input validations yet!:)"
         resume='y' 
         while(resume=='y'):
-            crop=raw_input("Enter the crop name. Your options are 'Cotton', 'None', 'Cumin', 'Mustard', 'Other', 'Wheat', 'Castor', 'Groundnut', 'Onion', 'Sorghum', 'Brinjal', 'Chilli', 'Gram', 'Paddy', 'Millet', 'Sesame', 'Banana', 'Maize', 'Garlic', 'Tobacco', 'Papaya'.")
-            dur=raw_input("Enter the average call duration in seconds Eg: 54,45,55")
-            month=raw_input("Enter the month name in short. Eg: Jan, Feb, Mar")
+            crop=raw_input("Enter the crop name. Your options are 'Cotton', 'None', 'Cumin', 'Mustard', 'Other', 'Wheat', 'Castor', 'Groundnut', 'Onion', 'Sorghum', 'Brinjal', 'Chilli', 'Gram', 'Paddy', 'Millet', 'Sesame', 'Banana', 'Maize', 'Garlic', 'Tobacco', 'Papaya'  ")
+            dur=raw_input("Enter the average call duration in seconds Eg: 54,45,55  ")
+            month=raw_input("Enter the month name in short. Eg: Jan, Feb, Mar  ")
             testvals.append([str(crop),int(dur),str(month)])
             resume=raw_input("Continue? y/n")
             resume=str(resume).lower()
-        trainClassifier()
-        testdat=prepare(testvals)[0]
+        
         with open('topic_classifier.pkl', 'rb') as fid:
             topicClf = cPickle.load(fid)
+        
+        testdat=prepare(testvals)[0]
         predictions=topicClf.predict_proba(testdat)
         outputResults(predictions,testvals)
